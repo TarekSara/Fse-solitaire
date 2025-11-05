@@ -10,17 +10,49 @@ body{
   background-size: contain;
   background-repeat: repeat;
 }
+.intro img {
+  width: 50%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+  border-radius: 8px;
+}
+
 .intro{
-    position: relative;
-    width: 100%;
-    height: 590px;
-    
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  flex-direction: column;
+  width: 100%;
+  height: 590px;
 }
-.intro img{
-    width: 100%;
-    height: 590px;
+.intro .image-container{
+  margin-top: -100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 1000px;
+  height: 400px;
 }
-.intro .box{
+.intro span {
+  font-family: "Bitcount Grid Single", system-ui;
+  font-size: 50px;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: #ffffff;
+  letter-spacing: 2px;
+  text-align: center;
+  margin-top: 70px;
+  transition: 
+    color 0.3s ease;
+}
+.intro span:hover {
+  color: #ea0606;
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+/*.intro .box{
     position: absolute;
     top: 30%;
     left: 10%;
@@ -51,21 +83,51 @@ body{
     background-color:rgb(235, 19, 19) ;
     color: rgb(228, 228, 228);
     cursor:pointer;
-  }
-  .second-intro{
-    font-size: 40px;
-    font-family: "Sanchez", serif;
-    background-size: contain;
-  }
-  h1{
-    color: red;
-  }
-  .second-intro p{
+  }*/
+
+  .second-intro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     text-align: center;
- }
-  .second-intro span{
-    color: rgb(0, 0, 0);
+    padding: 60px 20px;
+    color: #e0ffd8;      
+    font-family: "Bitcount Grid Single", system-ui;
+    gap: 20px;
   }
+  
+  .second-intro h1 {
+    font-size: 3rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin: 0;
+    color: #c0ffc0; 
+  }
+
+  .second-intro span {
+    font-size: 1.2rem;
+    max-width: 700px;
+    line-height: 1.6;
+    color: #d0ffd0; 
+  }
+  
+  .second-intro p {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #004400;
+    background-color: #a0ff80;  
+    padding: 12px 25px;
+    border-radius: 6px;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+    margin-top: 20px;
+  }
+  
+  .second-intro p:hover {
+    transform: scale(1.05);
+    background-color: #80ff60;
+  }
+  
   .second-intro ul{
     width: 100%;
     text-align: center;
