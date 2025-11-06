@@ -18,12 +18,12 @@ $duration ="00:". $minutes .":". $seconds;
 $stmt = $conn->prepare("INSERT INTO leaderboard (name, score, duration) VALUES (?, ?, ?)");
 $stmt->bind_param("sis", $name, $score, $duration);
 
-if ($stmt->execute()) {
-echo "success";
-} else {
-http_response_code(500);
-echo "error";
-}
+$stmt->execute();
+
+$response=[];
+$response["success"]= true;
+
+echo json_encode($response);
 
 $stmt->close();
 $conn->close();

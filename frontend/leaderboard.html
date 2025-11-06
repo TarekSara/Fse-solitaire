@@ -16,79 +16,98 @@
         <span>Welcome To Our Game !</span>
       </div>
       
-<h1>🏆 Leaderboard</h1>
 
-<form id="scoreForm">
-<label for="name">Name:</label>
-<input type="text" id="name" name="name" required>
+<div class="leaderboard" id="leaderboardTable">
+    <h1>🏆 LEADERBOARD 🏆</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>Name</th>
+                <th>Score</th>
+                <th>Duration</th>
+            </tr>
+        </thead>
+<tbody id="leaderboardBody">
 
-<label for="score">Score:</label>
-<input type="number" id="score" name="score" required>
-
-<button type="submit">Add Score</button>
-</form>
-
-<p id="message"></p>
-
-<table id="leaderboardTable">
-<thead>
-<tr>
-<th>Rank</th>
-<th>Name</th>
-<th>Score</th>
-<th>Duration</th>
-</tr>
-</thead>
-<tbody>
 </tbody>
-</table>
+    </table>
+<button onclick="window.location.href='index.html'">Go Back Home</button>
+</div>
+<div class="add-score" id="scoreForm">
+    <label for="name">Name:</label>
+    <input type="text" id="name" placeholder="Enter your name" required>
 
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <label for="score">Score:</label>
+    <input type="number" id="score" placeholder="Enter your score" required>
+
+    <button onclick="addScore()">Add Score</button>
+    <p id="message"></p>
+  </div>
+    
+    <p id="message"></p>
+
+    <footer class="footer">
+        <p>2025 Solitaire Game | All Rights Reserved</p>
+        <p>Done By : Tarek Sarakbi</p>
+      </footer>
+
+
+<script src="axios.min.js"></script>
+
+
 <script>
-
+    
 function loadLeaderboard() {
-axios.get('../backend/get_score.php')
-.then(res => {
-const tbody = document.querySelector('#leaderboardTable tbody');
-tbody.innerHTML = '';
+  axios.get('../backend/get_score.php').then(res => {
+    const tbody = document.querySelector('#leaderboardBody');
+    tbody.innerHTML = '';
 
-res.data.forEach(player => {
-const tr = document.createElement('tr');
-tr.innerHTML = `
-<td>${player.rank}</td>
-<td>${player.name}</td>
-<td>${player.score}</td>
-<td>${player.duration}</td>
-`;
-tbody.appendChild(tr);
-});
-})
-.catch(err => console.error('Error loading leaderboard:', err));
+    res.data.forEach(player => {
+      let row = `
+        <tr>
+          <td>${player.rank}</td>
+          <td>${player.name}</td>
+          <td>${player.score}</td>
+          <td>${player.duration}</td>
+        </tr>
+      `;
+      tbody.innerHTML += row;
+    });
+  });
 }
 
 loadLeaderboard();
 
-document.getElementById('scoreForm').addEventListener('submit', function(e) {
-e.preventDefault();
 
-const formData = new FormData(this);
+      function addScore() {
+        let name = document.getElementById('name').value.trim();
+        let score = document.getElementById('score').value;
+        let message = document.getElementById('message');
+      
+        if (!name || !score) {
+          message.textContent = "Please fill all fields.";
+          message.style.color = "orange";
+          return;
+        }
+      
+        let formData = new FormData();
+        formData.append('name', name);
+        formData.append('score', score);
+      
+        axios.post('../backend/add_score.php', formData).then(res => {
+          if (res.data && res.data.success) {
+            message.textContent = "Score added!";
+            message.style.color = "lightgreen";
+            document.getElementById('name').value = "";
+            document.getElementById('score').value = "";
+          } else {
+            message.textContent = "Error adding score.";
+            message.style.color = "red";
+          }
+        });
+      }
 
-axios.post('../backend/add_score.php', formData)
-.then(res => {
-if (res.data === "success") {
-document.getElementById('message').textContent = "✅ Score added successfully!";
-this.reset();
-loadLeaderboard();
-} else {
-document.getElementById('message').textContent = "❌ Error adding score: " + res.data;
-}
-})
-.catch(err => {
-document.getElementById('message').textContent = "❌ Error adding score";
-console.error(err);
-});
-});
 </script>
-
 </body>
 </html>
