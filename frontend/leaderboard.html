@@ -7,92 +7,54 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
+
 <body>
     <div class="intro">
-        <div><img src="images/166621.jpg" alt="img"></div>
-
-        <div class="box">
-            <p id="dots">Welcome To Our Website</p>
-            <button>START!</button>
+        <div class="image-container">
+            <img src="images/cards.webp" alt="alt">
         </div>
+        <span>Welcome To Our Game !</span>
+      </div>
+      
 
-    </div>
-</head>
-<body>
+<div class="leaderboard" id="leaderboardTable1">
+    <h1>🏆 LEADERBOARD 🏆</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>Name</th>
+                <th>Score</th>
+                <th>Duration</th>
+            </tr>
+        </thead>
+<tbody id="leaderboardBody1">
 
-<h1>🏆 Leaderboard</h1>
-
-<form id="scoreForm">
-<label for="name">Name:</label>
-<input type="text" id="name" name="name" required>
-
-<label for="score">Score:</label>
-<input type="number" id="score" name="score" required>
-
-<button type="submit">Add Score</button>
-</form>
-
-<p id="message"></p>
-
-<table id="leaderboardTable">
-<thead>
-<tr>
-<th>Rank</th>
-<th>Name</th>
-<th>Score</th>
-<th>Duration</th>
-</tr>
-</thead>
-<tbody>
 </tbody>
-</table>
+    </table>
+<button onclick="window.location.href='index.html'">Go Back Home</button>
+</div>
+<div class="add-score" id="scoreForm">
+    <label for="name">Name:</label>
+    <input type="text" id="name" placeholder="Enter your name" required>
 
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-<script>
+    <label for="score">Score:</label>
+    <input type="number" id="score" placeholder="Enter your score" required>
 
-function loadLeaderboard() {
-axios.get('../backend/get_score.php')
-.then(res => {
-const tbody = document.querySelector('#leaderboardTable tbody');
-tbody.innerHTML = '';
+    <button onclick="addScore()">Add Score</button>
+    <p id="message"></p>
+  </div>
+    
+    <p id="message"></p>
 
-res.data.forEach(player => {
-const tr = document.createElement('tr');
-tr.innerHTML = `
-<td>${player.rank}</td>
-<td>${player.name}</td>
-<td>${player.score}</td>
-<td>${player.duration}</td>
-`;
-tbody.appendChild(tr);
-});
-})
-.catch(err => console.error('Error loading leaderboard:', err));
-}
+    <footer class="footer">
+        <p>2025 Solitaire Game | All Rights Reserved</p>
+        <p>Done By : Tarek Sarakbi</p>
+      </footer>
 
-loadLeaderboard();
 
-document.getElementById('scoreForm').addEventListener('submit', function(e) {
-e.preventDefault();
-
-const formData = new FormData(this);
-
-axios.post('../backend/add_score.php', formData)
-.then(res => {
-if (res.data === "success") {
-document.getElementById('message').textContent = "✅ Score added successfully!";
-this.reset();
-loadLeaderboard();
-} else {
-document.getElementById('message').textContent = "❌ Error adding score: " + res.data;
-}
-})
-.catch(err => {
-document.getElementById('message').textContent = "❌ Error adding score";
-console.error(err);
-});
-});
-</script>
+<script src="script/axios.min.js"></script>
+<script src="script/script.js"></script>
 
 </body>
 </html>

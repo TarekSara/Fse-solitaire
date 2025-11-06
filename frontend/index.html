@@ -8,25 +8,25 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-<div class="intro">
-<div><img src="images/6Hz9Sr.jpg" alt="img"></div>
+    <div class="intro">
+        <div class="image-container">
+            <img src="images/cards.webp" alt="alt">
+        </div>
+        <span>Welcome To Our Game !</span>
+      </div>
 
-<div class="box">
-<p id="dots">Welcome To Our Website</p>
-<button>START!</button>
-</div>
-</div>
 
-<div class="second-intro">
-<h1>SOLITAIRE</h1>
-<span>The addictive game you've been playing on your computer for years now goes wherever you do.</span>
-<span>Whether you know it as Patience, Klondike, or just Solitaire, this popular game is one of the best games around.</span>
-<br>
-<p>Download It Right Now!!</p>
+      <div class="second-intro">
+        <h1>SOLITAIRE</h1>
+        <span>The addictive game you've been playing on your computer for years now goes wherever you do.</span>
+        <span>Whether you know it as Patience, Klondike, or just Solitaire, this popular game is one of the best games around.</span>
+        <p>Download It Right Now</p>
+     
+      
 <br>
 <ul>
 <li>
-<a href="">
+<a href="https://play.google.com/store/apps/details?id=com.mobilityware.solitaire&pcampaignid=web_share">
 <div class="download-android">
 <i class="fa fa-android fa-2x"></i>
 <span class="p1">Download from</span>
@@ -35,7 +35,7 @@
 </a>
 </li>
 <li>
-<a href="">
+<a href="https://apps.apple.com/us/app/solitaire/id359917414">
 <div class="download-apple">
 <i class="fa fa-apple fa-2x"></i>
 <span class="p1">Download from</span>
@@ -46,52 +46,33 @@
 </ul>
 </div>
 
-<div class="leaderboard">
-<h1>LEADERBOARD</h1>
-<table>
-<thead>
-<tr>
-<th>Rank</th>
-<th>Name</th>
-<th>Score</th>
-<th>Duration</th>
-</tr>
-</thead>
-<tbody id="leaderboardBody">
+    <div class="leaderboard">
+        <h1>🏆 LEADERBOARD - Top 5 🏆</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Name</th>
+                    <th>Score</th>
+                    <th>Duration</th>
+                </tr>
+            </thead>
+    <tbody id="leaderboardBody">
 
-</tbody>
-</table>
+    </tbody>
+        </table>
 <button onclick="window.location.href='leaderboard.html'">Check All LEADERBOARD</button>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-<script>
-function loadTop5() {
-const tbody = document.getElementById('leaderboardBody');
+<footer class="footer">
+    <p>2025 Solitaire Game | All Rights Reserved</p>
+    <p>Done By : Tarek Sarakbi</p>
+  </footer>
 
-axios.get('../backend/get_score.php')
-.then(res => {
-tbody.innerHTML = '';
 
-const top5 = res.data.slice(0, 5);
+  <script src="script/axios.min.js"></script>
+  <script src="script/script.js"></script>
 
-top5.forEach(player => {
-const tr = document.createElement('tr');
-tr.innerHTML = `
-<td>${player.rank}</td>
-<td>${player.name}</td>
-<td>${player.score}</td>
-<td>${player.duration}</td>
-`;
-tbody.appendChild(tr);
-});
-})
-.catch(err => console.error('Error loading leaderboard:', err));
-}
-
-window.addEventListener('DOMContentLoaded', loadTop5);
-</script>
-
-<script src="java.js"></script>
+  
 </body>
 </html>
