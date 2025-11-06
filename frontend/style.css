@@ -1,14 +1,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Bitcount+Grid+Single:wght@100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Bitcount+Grid+Single:wght@100..900&family=Sanchez:ital@0;1&display=swap');
-*{
-    margin: 0;
-    padding: 0;
-    font-family: "Sanchez", serif;
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Sanchez", serif;
 }
-body{
+
+body {
   background-image: url(images/bg.jpg);
   background-size: contain;
   background-repeat: repeat;
+}
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 590px;
 }
 .intro img {
   width: 50%;
@@ -17,16 +27,7 @@ body{
   display: block;
   border-radius: 8px;
 }
-
-.intro{
-  display: flex;
-  justify-content: center;
-  align-items: center; 
-  flex-direction: column;
-  width: 100%;
-  height: 590px;
-}
-.intro .image-container{
+.intro .image-container {
   margin-top: -100px;
   display: flex;
   justify-content: center;
@@ -50,90 +51,73 @@ body{
   transform: scale(1.05);
   cursor: pointer;
 }
-  .second-intro {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 60px 20px;
-    color: #e0ffd8;      
-    font-family: "Bitcount Grid Single", system-ui;
-    gap: 20px;
-  }
-  
-  .second-intro h1 {
-    font-size: 3rem;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    margin: 0;
-    color: #c0ffc0; 
-  }
-
-  .second-intro span {
-    font-size: 1.2rem;
-    max-width: 700px;
-    line-height: 1.6;
-    color: #d0ffd0; 
-  }
-  
-  .second-intro p {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #004400;
-    background-color: #a0ff80;  
-    padding: 12px 25px;
-    border-radius: 6px;
-    transition: transform 0.2s ease;
-    margin-top: 20px;
-  }
-  
-  .second-intro p:hover {
-    transform: scale(1.05);
-    background-color: #80ff60;
-  }
-  
-  .second-intro ul{
-    width: 100%;
-    text-align: center;
-    margin: 0;
-    font-size: 20px;
-  }
-  .second-intro li{
-    display: inline-block;
-    margin: 10px;
-  }
-  .second-intro .download-android{
-    position: relative;
-    border-radius: 5%;
-    width: 200px;
-    height: 100px;
-    background-color: rgb(0, 0, 0);
-    float: left;
-  }
-  .second-intro .download-apple{
-    position: relative;
-    border-radius: 5%;
-    width: 200px;
-    height: 100px;
-    background-color: rgb(0, 0, 0);
-    float: left;
-    color: white;
-  }
-.second-intro .fa{
-    position: absolute;
-    top: 50%;
-    left: 40%;
-    color: white;
+.second-intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 60px 20px;
+  color: #e0ffd8;
+  font-family: "Bitcount Grid Single", system-ui;
+  gap: 20px;
 }
-a{
-    text-decoration: none;
-    color: inherit;           
-}
-.second-intro li span{
-    color: white;
 
-}.leaderboard {
+.second-intro h1 {
+  font-size: 48px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin: 0;
+  color: #c0ffc0;
+}
+
+.second-intro span,
+.second-intro p {
+  font-size: 19px;
+  max-width: 700px;
+  line-height: 1.6;
+  color: #d0ffd0;
+}
+
+.second-intro ul {
+  width: 100%;
+  text-align: center;
+  margin: 0;
+  font-size: 20px;
+}
+
+.second-intro li {
+  display: inline-block;
+  margin: 10px;
+}
+
+.second-intro .download-android,
+.second-intro .download-apple {
+  position: relative;
+  border-radius: 5%;
+  width: 200px;
+  height: 100px;
+  background-color: #000;
+  float: left;
+  color: #fff;
+}
+
+.second-intro .fa {
+  position: absolute;
+  top: 50%;
+  left: 40%;
+  color: #fff;
+}
+
+.second-intro li span {
+  color: #fff;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+.leaderboard {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -174,8 +158,7 @@ a{
   padding: 10px;
   border-bottom: 1px solid #336633;
 }
-
-.leaderboard tbody tr{
+.leaderboard tbody tr {
   background-color: rgba(255, 255, 255, 0.45);
 }
 
@@ -195,11 +178,11 @@ a{
   cursor: pointer;
   transition: transform 0.2s ease;
 }
-
 .leaderboard button:hover {
   background-color: #80ff60;
   transform: scale(1.05);
-}#scoreForm {
+}
+#scoreForm {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -276,7 +259,6 @@ a{
   background-color: #1b1b1b;
   opacity: 0.7;
 }
-
 .footer p {
   color: white;
   margin-bottom: 20px;

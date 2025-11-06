@@ -17,7 +17,7 @@
       </div>
       
 
-<div class="leaderboard" id="leaderboardTable">
+<div class="leaderboard" id="leaderboardTable1">
     <h1>🏆 LEADERBOARD 🏆</h1>
     <table>
         <thead>
@@ -28,7 +28,7 @@
                 <th>Duration</th>
             </tr>
         </thead>
-<tbody id="leaderboardBody">
+<tbody id="leaderboardBody1">
 
 </tbody>
     </table>
@@ -53,61 +53,8 @@
       </footer>
 
 
-<script src="axios.min.js"></script>
+<script src="script/axios.min.js"></script>
+<script src="script/script.js"></script>
 
-
-<script>
-    
-function loadLeaderboard() {
-  axios.get('../backend/get_score.php').then(res => {
-    const tbody = document.querySelector('#leaderboardBody');
-    tbody.innerHTML = '';
-
-    res.data.forEach(player => {
-      let row = `
-        <tr>
-          <td>${player.rank}</td>
-          <td>${player.name}</td>
-          <td>${player.score}</td>
-          <td>${player.duration}</td>
-        </tr>
-      `;
-      tbody.innerHTML += row;
-    });
-  });
-}
-
-loadLeaderboard();
-
-
-      function addScore() {
-        let name = document.getElementById('name').value.trim();
-        let score = document.getElementById('score').value;
-        let message = document.getElementById('message');
-      
-        if (!name || !score) {
-          message.textContent = "Please fill all fields.";
-          message.style.color = "orange";
-          return;
-        }
-      
-        let formData = new FormData();
-        formData.append('name', name);
-        formData.append('score', score);
-      
-        axios.post('../backend/add_score.php', formData).then(res => {
-          if (res.data && res.data.success) {
-            message.textContent = "Score added!";
-            message.style.color = "lightgreen";
-            document.getElementById('name').value = "";
-            document.getElementById('score').value = "";
-          } else {
-            message.textContent = "Error adding score.";
-            message.style.color = "red";
-          }
-        });
-      }
-
-</script>
 </body>
 </html>
